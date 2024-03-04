@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant browser
+    participant server
+    participant database
+
+    browser->>browser: Usuario escribe nueva nota
+    browser->>browser: Usuario hace clic en "Guardar"
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/spa/new_note
+    activate server
+    server-->>database: Guardar nueva nota en la base de datos
+    activate database
+    database-->>server: Nota guardada exitosamente
+    deactivate database
+    server-->>browser: Respuesta del servidor
+    deactivate server
+
+    Note right of browser: La SPA actualiza la lista de notas con la nueva información
