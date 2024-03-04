@@ -1,0 +1,29 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: Documento HTML de la SPA
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: Archivo CSS
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: Archivo JavaScript de la SPA
+    deactivate server
+
+    Note right of browser: El navegador ejecuta el JavaScript que carga la SPA
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "HTML es fácil", "date": "2023-1-1" }, ... ]
+    deactivate server
+
+    Note right of browser: La SPA se carga con la información de las notas
+
+    browser->>browser: Usuario interactúa con la SPA para ver, editar o crear notas
